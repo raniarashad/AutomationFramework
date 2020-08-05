@@ -41,7 +41,7 @@ public class TestBase {
 		}
 
 		driver.manage().window().maximize();
-		driver.navigate().to("https://uk.tommy.com/womens-clothes");
+		driver.navigate().to("https://uk.tommy.com/mens-sunglasses");
 	}
 
 	@AfterSuite(enabled = false)
