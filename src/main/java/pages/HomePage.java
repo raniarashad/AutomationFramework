@@ -37,7 +37,10 @@ public class HomePage extends PageBase {
 		super(driver);
 		js = (JavascriptExecutor) driver;
 	}
-
+	
+	JavascriptExecutor js;	
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	
 	@FindBy(xpath = "//li[@pvh-data='6']")
 	WebElement parentMenu;
 
@@ -53,10 +56,10 @@ public class HomePage extends PageBase {
 	@FindBy(className ="product-image__image")
 	List<WebElement> productImage;
 
+	
 	@FindBy(className = "product-tile__imagery")
 	List<WebElement> Tag_a_ToGetHref;
 
-	JavascriptExecutor js;	
 
 	public void OpenMenuItem() throws IOException {
 
@@ -69,7 +72,7 @@ public class HomePage extends PageBase {
 		}
 		System.out.println("begin");
 
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		
 		System.out.println("Please Enter the File Path that data will be saved in : ");
 		String FilePath = reader.readLine();
 		File source  = new File(FilePath);
