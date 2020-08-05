@@ -1,5 +1,9 @@
 package tests;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,7 +25,7 @@ public class TestBase {
 
 	@BeforeSuite
 	@Parameters({"browser"})
-	public void StartDriver (@Optional("chrome") String browserName)
+	public void StartDriver (@Optional("chrome") String browserName) throws IOException
 	{
 		// ignorecase -- ignore case from name B or b
 		if (browserName.equalsIgnoreCase("chrome"))
@@ -41,7 +45,10 @@ public class TestBase {
 		}
 
 		driver.manage().window().maximize();
-		driver.navigate().to("https://uk.tommy.com/mens-sunglasses");
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Please Enter the required URL : ");
+		String URL = reader.readLine();
+		driver.navigate().to(URL);
 	}
 
 	@AfterSuite(enabled = false)

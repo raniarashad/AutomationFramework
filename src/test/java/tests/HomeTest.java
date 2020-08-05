@@ -2,6 +2,9 @@ package tests;
 
 import pages.HomePage;
 import pages.PageBase;
+
+import java.io.IOException;
+
 import org.testng.annotations.*;
 
 public class HomeTest extends TestBase {
@@ -12,6 +15,18 @@ public class HomeTest extends TestBase {
 	public void Test()
 	{
 		HomeObject = new HomePage(driver);
-		HomeObject.OpenMenuItem();
+		try {
+			HomeObject.OpenMenuItem();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	/*	try {
+			HomeObject.WriteTextInExcel();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		*/
 	}
 }
