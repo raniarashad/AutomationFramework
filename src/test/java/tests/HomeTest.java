@@ -1,7 +1,6 @@
 package tests;
 
 import pages.HomePage;
-import pages.PageBase;
 
 import java.io.IOException;
 
