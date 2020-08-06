@@ -20,6 +20,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -36,30 +37,16 @@ public class HomePage extends PageBase {
 	public HomePage(WebDriver driver) {
 		super(driver);
 		js = (JavascriptExecutor) driver;
-	}
-	
-	JavascriptExecutor js;	
-	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	
-	@FindBy(xpath = "//li[@pvh-data='6']")
-	WebElement parentMenu;
+		Driver = driver;
 
-	@FindBy(xpath = "//a[@href='https://uk.tommsy.com/womens-dresses-jumpsuits']")
-	WebElement subMenu;
+	}
+
+	JavascriptExecutor js;	
+	WebDriver Driver;
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 	@FindBy(xpath = "//button[@class='cookie-notice__agree-button button']")
 	WebElement acceptCookies;
-
-	@FindBy(xpath = "//div[@class='product-list']")
-	List<WebElement> productList;
-
-	@FindBy(className ="product-image__image")
-	List<WebElement> productImage;
-
-	
-	@FindBy(className = "product-tile__imagery")
-	List<WebElement> Tag_a_ToGetHref;
-
 
 	public void OpenMenuItem() throws IOException {
 
@@ -72,36 +59,43 @@ public class HomePage extends PageBase {
 		}
 		System.out.println("begin");
 
+		System.out.println("Please enter the Class Name : ");
+		String selector = reader.readLine();
+		List <WebElement> ImageTag  = (List<WebElement>) Driver.findElements(By.className(selector));
 		
 		System.out.println("Please Enter the File Path that data will be saved in : ");
 		String FilePath = reader.readLine();
 		File source  = new File(FilePath);
+
 		
-		for (int i = 0; i <Tag_a_ToGetHref.size(); i++) 
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i <ImageTag.size(); i++) 
 		{ 
-			String list = Tag_a_ToGetHref.get(i).getAttribute("href");
+			String list = ImageTag.get(i).getAttribute("href");
 			js.executeScript("window.scrollBy(0,2000)");
 
 			try 
 			{
-				Thread.sleep(20000); 
+				Thread.sleep(4000); 
 			} 
 			catch (InterruptedException e)
 			{
 				e.printStackTrace(); 
 			}
 
-	        FileInputStream input = new FileInputStream(source);
-	        XSSFWorkbook wb = new XSSFWorkbook(input);
-	        XSSFSheet sheet = wb.getSheetAt(0);
-	        sheet.createRow(i).createCell(0).setCellValue(list);
-	        FileOutputStream output = new FileOutputStream(source);
-	        wb.write(output);
-	        wb.close();
-
+			FileInputStream input = new FileInputStream(source);
+			XSSFWorkbook wb = new XSSFWorkbook(input);
+			XSSFSheet sheet = wb.getSheetAt(0);
+			sheet.createRow(i).createCell(0).setCellValue(list);
+			FileOutputStream output = new FileOutputStream(source);
+			wb.write(output);
+			wb.close();
 		}
-
-
 	}
 
 	public void WriteInTextFile () {
@@ -128,18 +122,18 @@ public class HomePage extends PageBase {
 	}
 
 	public void WriteTextInExcel () throws IOException {
-		
+
 		File source  = new File("D:\\Rania\\Automation Projects\\Scrapping.data\\src\\test\\java\\utilities\\Data.xlsx");
-        FileInputStream input = new FileInputStream(source);
-        XSSFWorkbook wb = new XSSFWorkbook(input);
-        XSSFSheet sheet = wb.getSheetAt(0);
-        sheet.createRow(0).createCell(0).setCellValue("Pass1");
-        sheet.createRow(1).createCell(0).setCellValue("Pass2");
-        sheet.createRow(2).createCell(0).setCellValue("pass3");
-        FileOutputStream output = new FileOutputStream(source);
-        wb.write(output);
-        wb.close();
-      
+		FileInputStream input = new FileInputStream(source);
+		XSSFWorkbook wb = new XSSFWorkbook(input);
+		XSSFSheet sheet = wb.getSheetAt(0);
+		sheet.createRow(0).createCell(0).setCellValue("Pass1");
+		sheet.createRow(1).createCell(0).setCellValue("Pass2");
+		sheet.createRow(2).createCell(0).setCellValue("pass3");
+		FileOutputStream output = new FileOutputStream(source);
+		wb.write(output);
+		wb.close();
+
 	}
 }
 

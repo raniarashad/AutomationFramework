@@ -18,7 +18,6 @@ public class HomeTest extends TestBase {
 		try {
 			HomeObject.OpenMenuItem();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
