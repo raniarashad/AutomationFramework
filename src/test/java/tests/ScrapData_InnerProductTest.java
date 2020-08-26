@@ -1,30 +1,29 @@
 package tests;
 
-import pages.HomePage;
+import pages.ScrapData_InnerProductPage;
 
 import java.io.IOException;
 
 import org.testng.annotations.*;
 
-public class HomeTest extends TestBase {
+public class ScrapData_InnerProductTest extends TestBase {
 
-	HomePage HomeObject;
+	ScrapData_InnerProductPage HomeObject;
 
 	@Test
 	public void Test()
 	{
-		HomeObject = new HomePage(driver);
+
+		HomeObject = new ScrapData_InnerProductPage(driver);
+
 		try {
-			HomeObject.OpenMenuItem();
+			//HomeObject.WriteTextInExcel();
+			 //HomeObject.ScrappingInnerProductData();
+			  HomeObject.ScrappingInnerProductURL();
+			  HomeObject.Open_Href_FromList();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-	/*	try {
-			HomeObject.WriteTextInExcel();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
+
 	}
 }

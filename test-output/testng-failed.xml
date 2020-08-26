@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.HomeTest">
+      <class name="tests.ScrapData_InnerProductTest">
         <methods>
-          <include name="Test"/>
           <include name="StopDriver"/>
           <include name="ScreenShot"/>
+          <include name="Test"/>
           <include name="StartDriver"/>
         </methods>
-      </class> <!-- tests.HomeTest -->
+      </class> <!-- tests.ScrapData_InnerProductTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

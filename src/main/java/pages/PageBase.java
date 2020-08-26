@@ -23,4 +23,14 @@ public class PageBase {
 	{
 		TextElement.sendKeys(Value);
 	}
+	
+	public void sleep(int seconds) 
+	{
+		try {
+			Thread.sleep(seconds * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
